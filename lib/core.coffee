@@ -11,7 +11,7 @@ path = require('path')
 qs = require('querystring')
 i = require('util').inspect
 
-module.exports = (token, url, ver) ->
+module.exports = (api_key) ->
 	api_url = 'http://www.viralheat.com/api/'
 	
 	######
@@ -122,14 +122,13 @@ module.exports = (token, url, ver) ->
 		######
 		# Call API
 		#
-		# @param {String} module The Bandcamp API module
+		# @param {String} module The Viralheat API module
 		# @param {String} method Module method
 		# @param {Object} parameters Parameters to pass to the method
-		# @param {Function} callback Callback to handle Bandcamp response
-		# @param {Integer} [ver] Version of the module you want to call. This is an override of defaults (latest).
-		# @return {Object} Bandcamp response
+		# @param {Function} callback Callback to handle Viralheat response
+		# @return {Object} Viralheat response
 		######
-		callApi: (module, method, params, payload, callback, ver) ->
+		callApi: (module, method, params, payload, callback) ->
 			if(typeof callback isnt 'function')
 				callback = (err, data, status) ->
 					console.log('No callback was set for '+module+'.'+'method')
@@ -157,6 +156,7 @@ module.exports = (token, url, ver) ->
 				get(fullUrl + '?' + parsedParams + '&api_key=' + api_key, callback)
 			else
 				console.log('POST: ' + fullUrl + '?api_key=' + api_key, callback)
+				# we don't have any post methods yet.
 				# console.log(payload)
 				# post(fullUrl + '?api_key=' + api_key, payload, callback)
 	}
