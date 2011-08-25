@@ -10,7 +10,7 @@ exports = module.exports = (api_key) ->
 	libxmljs = require('libxmljs')
 	
 	website = (id, page, callback) ->
-		page_number = page ? page : 0;
+		page_number = page ? page : 1;
 		
 		params =
 			profile_id: id
@@ -22,14 +22,14 @@ exports = module.exports = (api_key) ->
 			params,
 			null,
 			(err, data, status) ->
-				if(status=='200')
+				if(status==200)
 					callback(null, data, 200)
 				else
 					callback({code:status, msg: err})
 		)
 	
 	video = (id, page, callback) ->
-		page_number = page ? page : 0;
+		page_number = page ? page : 1;
 		
 		params =
 			profile_id: id
@@ -41,15 +41,35 @@ exports = module.exports = (api_key) ->
 			params,
 			null,
 			(err, data, status) ->
-				if(status=='200')
+				if(status==200)
 					# do XML munging here
 					callback(null, data, 200)
 				else
 					callback({code:status, msg: err})
 		)
 	
+	twitter = (id, page, callback) ->
+		page_number = page ? page : 1;
+		
+		params =
+			profile_id: id
+			page_number: page_number
+		
+		core.callApi(
+			'twitter',
+			'mentions',
+			params,
+			null,
+			(err, data, status) ->
+				if(status==200)
+					# do XML munging here
+					callback(null, data, 200)
+				else
+					callback({code:status, msg: err})
+		)
+
 	facebook = (id, page, callback) ->
-		page_number = page ? page : 0;
+		page_number = page ? page : 1;
 		
 		params =
 			profile_id: id
@@ -61,7 +81,7 @@ exports = module.exports = (api_key) ->
 			params,
 			null,
 			(err, data, status) ->
-				if(status=='200')
+				if(status==200)
 					# do XML munging here
 					callback(null, data, 200)
 				else
@@ -69,7 +89,7 @@ exports = module.exports = (api_key) ->
 		)
 
 	google_buzz = (id, page, callback) ->
-		page_number = page ? page : 0;
+		page_number = page ? page : 1;
 		
 		params =
 			profile_id: id
@@ -81,7 +101,7 @@ exports = module.exports = (api_key) ->
 			params,
 			null,
 			(err, data, status) ->
-				if(status=='200')
+				if(status==200)
 					# do XML munging here
 					callback(null, data, 200)
 				else

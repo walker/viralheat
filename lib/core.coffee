@@ -139,22 +139,25 @@ module.exports = (api_key) ->
 			if(_is('get', module, method))
 				if !params
 					params =  {}
-				params.api_key = api_key
-			else
-				params = null
+				if(module != 'social_trends')
+					params.api_key = api_key
+			# else
+			# 	params = null
 			
 			baseUrl = api_url
 			parsedParams = qs.stringify(params).replace(/\%2c/ig, ',')
 			switch module
-				when 'profiles', 'statistics', 'data'
+				when 'profiles', 'statistics'
 					fullUrl = baseUrl + path.join(module, method)
+				when 'social_trends'
+					fullUrl = baseUrl + path.join(module, method) + '.xml'
 				else
 					fullUrl = baseUrl + path.join(module, method) + '.json'
 			
 			if(typeof api_key == 'string')
 				if(_is('get', module, method))
 					console.log('GET: ' + fullUrl + '?' + parsedParams)
-					get(fullUrl + '?' + parsedParams + '&api_key=' + api_key, callback)
+					get(fullUrl + '?' + parsedParams, callback)
 				else
 					console.log('POST: ' + fullUrl + '?api_key=' + api_key, callback)
 					# we don't have any post methods yet.

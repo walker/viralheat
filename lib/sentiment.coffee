@@ -16,6 +16,7 @@ exports = module.exports = (api_key) ->
 			'sentiment',
 			'review',
 			params,
+			null,
 			(err, data, status) ->
 				if(status==200)
 					callback(null, data, 200)
@@ -32,6 +33,7 @@ exports = module.exports = (api_key) ->
 			'sentiment',
 			'train',
 			params,
+			null,
 			(err, data, status) ->
 				if(status==200)
 					callback(null, data, 200)
@@ -43,6 +45,7 @@ exports = module.exports = (api_key) ->
 		core.callApi(
 			'sentiment',
 			'quota',
+			null,
 			null,
 			(err, data, status) ->
 				if(status==200)
