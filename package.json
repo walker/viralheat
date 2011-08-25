@@ -1,19 +1,22 @@
 {
+  "author": "Walker Hamilton <myself@walkerhamilton.com> (http://walkerhamilton.com)",
   "name": "viralheat",
-  "description": "Module for accessing the ViralHeat sentiment analysis service",
+  "description": "Module for accessing the Viralheat's API library",
   "version": "0.0.1",
-  "author": "Walker Hamilton <myself@walkerhamilton.com>",
-  "contributors": [ 
-    { "name": "Walker Hamilton", "email": "myself@walkerhamilton.com" }
-  ],
+  "licenses":     [{
+    "type":       "MIT",
+    "url":        "http://github.com/walker/viralheat/raw/master/LICENSE"
+  }],
+  "homepage": "https://github.com/walker/viralheat",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/walker/viralheat.git"
+  },
+  "main": "./index",
+  "engines": {
+    "node": ">= 0.4.10 < 0.5.0"
+  },
   "dependencies": {
-    "libxmljs": ">= 1.5.2 < 2.0.0",
-  },
-  "devDependencies": {
-    "coffee-script": ">= 0.0.1",
-  },
-  "keywords": ["api", "sentiment analysis", "text", "analysis"],
-  "repository": "git://github.com/walker/viralheat",
-  "main": "index",
-  "engines": { "node": ">= 0.4.10 < 0.5.0" }
+    "libxmljs": ">= 1.5.2 < 2.0.0"
+  }
 }
