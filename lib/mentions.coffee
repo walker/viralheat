@@ -9,32 +9,31 @@ exports = module.exports = (api_key) ->
 	core = require('./core')(api_key)
 	libxmljs = require('libxmljs')
 	
-	video = (id, days, callback) ->
+	website = (id, page, callback) ->
 		params =
 			profile_id: id
-			days: days
-		
-		core.callApi(
-			'video',
-			'stats',
-			params,
-			null,
-			(err, data, status) ->
-				if(status=='200')
-					# do XML munging here
-					callback(null, data, 200)
-				else
-					callback({code:status, msg: err})
-		)
-	
-	website = (id, days, callback) ->
-		params =
-			profile_id: id
-			days: days
+			page_number: page ? page : 0
 		
 		core.callApi(
 			'website',
-			'stats',
+			'mentions',
+			params,
+			null,
+			(err, data, status) ->
+				if(status=='200')
+					callback(null, data, 200)
+				else
+					callback({code:status, msg: err})
+		)
+	
+	video = (id, page, callback) ->
+		params =
+			profile_id: id
+			page_number: page ? page : 0
+		
+		core.callApi(
+			'video',
+			'mentions',
 			params,
 			null,
 			(err, data, status) ->
@@ -45,14 +44,14 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
-	facebook = (id, days, callback) ->
+	facebook = (id, page, callback) ->
 		params =
 			profile_id: id
-			days: days
+			page_number: page ? page : 0
 		
 		core.callApi(
 			'facebook',
-			'stats',
+			'mentions',
 			params,
 			null,
 			(err, data, status) ->
@@ -62,33 +61,15 @@ exports = module.exports = (api_key) ->
 				else
 					callback({code:status, msg: err})
 		)
-	
-	twitter = (id, days, callback) ->
-		params =
-			profile_id: id,
-			days: days
-		
-		core.callApi(
-			'twitter',
-			'stats',
-			params,
-			null,
-			(err, data, status) ->
-				if(status=='200')
-					# do XML munging here
-					callback(null, data, 200)
-				else
-					callback({code:status, msg: err})
-		)
-	
-	google_buzz = (id, days, callback) ->
+
+	google_buzz = (id, page, callback) ->
 		params =
 			profile_id: id
-			days: days
+			page_number: page ? page : 0
 		
 		core.callApi(
 			'google_buzz',
-			'stats',
+			'mentions',
 			params,
 			null,
 			(err, data, status) ->
@@ -100,6 +81,8 @@ exports = module.exports = (api_key) ->
 		)
 	
 	return {
-		profiles: train,
-		stats: get,
+		website: website,
+		video: video,
+		facebook: facebook,
+		google_buzz: google_buzz
 	}

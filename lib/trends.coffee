@@ -16,7 +16,7 @@ exports = module.exports = (api_key) ->
 		
 		core.callApi(
 			'video',
-			'stats',
+			'trend',
 			params,
 			null,
 			(err, data, status) ->
@@ -34,7 +34,7 @@ exports = module.exports = (api_key) ->
 		
 		core.callApi(
 			'website',
-			'stats',
+			'trend',
 			params,
 			null,
 			(err, data, status) ->
@@ -44,7 +44,7 @@ exports = module.exports = (api_key) ->
 				else
 					callback({code:status, msg: err})
 		)
-	
+
 	facebook = (id, days, callback) ->
 		params =
 			profile_id: id
@@ -52,7 +52,7 @@ exports = module.exports = (api_key) ->
 		
 		core.callApi(
 			'facebook',
-			'stats',
+			'trend',
 			params,
 			null,
 			(err, data, status) ->
@@ -65,12 +65,12 @@ exports = module.exports = (api_key) ->
 	
 	twitter = (id, days, callback) ->
 		params =
-			profile_id: id,
+			profile_id: id
 			days: days
 		
 		core.callApi(
 			'twitter',
-			'stats',
+			'trend',
 			params,
 			null,
 			(err, data, status) ->
@@ -88,7 +88,7 @@ exports = module.exports = (api_key) ->
 		
 		core.callApi(
 			'google_buzz',
-			'stats',
+			'trend',
 			params,
 			null,
 			(err, data, status) ->

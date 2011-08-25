@@ -7,8 +7,9 @@ exports = module.exports = (api_key) ->
 	# Module dependencies
 	######
 	core = require('./core')(api_key)
+	libxmljs = require('libxmljs')
 	
-	profiles = (page) ->
+	profiles = (page, callback) ->
 		params =
 			page_number: page
 		
@@ -24,7 +25,7 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
-	stats = (id) ->
+	stats = (id, callback) ->
 		params =
 			profile_id: id
 		
