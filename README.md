@@ -2,10 +2,7 @@ Support for the [Viralheat](http://www.viralheat.com/) API.
 
 See [viralheat-sentiment](https://github.com/walker/viralheat-sentiment) for a lighter-weight module that provides only sentiment analysis.
 
-
-Support for the [Viralheat](http://www.viralheat.com/) API.
-
-Sentiment analysis only (look for viralheat module for support for entire module & method set).
+This module requires [libxmljs](http://search.npmjs.org/#/libxmljs), which can be a bit complicated to install.
 
 Reuire the module:
 
