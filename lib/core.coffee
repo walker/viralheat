@@ -131,7 +131,7 @@ module.exports = (api_key) ->
 		callApi: (module, method, params, payload, callback) ->
 			if(typeof callback isnt 'function')
 				callback = (err, data, status) ->
-					console.log('No callback was set for '+module+'.'+'method')
+					console.log('No callback was set for '+module+'.'+method)
 			if (!module || !method)
 				new Error('viralheat.callAPI: Module and Method are required.')
 				return
@@ -151,14 +151,19 @@ module.exports = (api_key) ->
 				else
 					fullUrl = baseUrl + path.join(module, method) + '.json'
 			
-			if(_is('get', module, method) && typeof token == 'string')
-				console.log('GET: ' + fullUrl + '?' + parsedParams)
-				get(fullUrl + '?' + parsedParams + '&api_key=' + api_key, callback)
+			if(typeof api_key == 'string')
+				if(_is('get', module, method))
+					console.log('GET: ' + fullUrl + '?' + parsedParams)
+					get(fullUrl + '?' + parsedParams + '&api_key=' + api_key, callback)
+				else
+					console.log('POST: ' + fullUrl + '?api_key=' + api_key, callback)
+					# we don't have any post methods yet.
+					# console.log(payload)
+					# post(fullUrl + '?api_key=' + api_key, payload, callback)
 			else
-				console.log('POST: ' + fullUrl + '?api_key=' + api_key, callback)
-				# we don't have any post methods yet.
-				# console.log(payload)
-				# post(fullUrl + '?api_key=' + api_key, payload, callback)
+				console.log('No api key was provided.')
+				new Error('viralheat.callAPI: You failed to provide an api key or the api key provided was not valid.')
+				return
 	}
 
 _is = (type, module, method) ->
