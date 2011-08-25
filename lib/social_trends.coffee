@@ -10,8 +10,10 @@ exports = module.exports = (api_key) ->
 	libxmljs = require('libxmljs')
 	
 	profiles = (page, callback) ->
+		page_number = page ? page : 0;
+		
 		params =
-			page_number: page
+			page_number: page_number
 		
 		core.callApi(
 			'social_trends',
@@ -43,6 +45,6 @@ exports = module.exports = (api_key) ->
 		)
 	
 	return {
-		profiles: train,
-		stats: get,
+		profiles: profiles,
+		stats: stats,
 	}

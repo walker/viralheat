@@ -52,7 +52,7 @@ exports = module.exports = (api_key) ->
 		)
 
 	return {
-		train: train,
-		get: get,
+		train: train
+		get: get
 		quota: quota
 	}

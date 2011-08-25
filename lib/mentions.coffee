@@ -10,9 +10,11 @@ exports = module.exports = (api_key) ->
 	libxmljs = require('libxmljs')
 	
 	website = (id, page, callback) ->
+		page_number = page ? page : 0;
+		
 		params =
 			profile_id: id
-			page_number: page ? page : 0
+			page_number: page_number
 		
 		core.callApi(
 			'website',
@@ -27,9 +29,11 @@ exports = module.exports = (api_key) ->
 		)
 	
 	video = (id, page, callback) ->
+		page_number = page ? page : 0;
+		
 		params =
 			profile_id: id
-			page_number: page ? page : 0
+			page_number: page_number
 		
 		core.callApi(
 			'video',
@@ -45,9 +49,11 @@ exports = module.exports = (api_key) ->
 		)
 	
 	facebook = (id, page, callback) ->
+		page_number = page ? page : 0;
+		
 		params =
 			profile_id: id
-			page_number: page ? page : 0
+			page_number: page_number
 		
 		core.callApi(
 			'facebook',
@@ -63,9 +69,11 @@ exports = module.exports = (api_key) ->
 		)
 
 	google_buzz = (id, page, callback) ->
+		page_number = page ? page : 0;
+		
 		params =
 			profile_id: id
-			page_number: page ? page : 0
+			page_number: page_number
 		
 		core.callApi(
 			'google_buzz',
@@ -81,8 +89,9 @@ exports = module.exports = (api_key) ->
 		)
 	
 	return {
-		website: website,
-		video: video,
-		facebook: facebook,
+		website: website
+		video: video
+		facebook: facebook
+		twitter: twitter
 		google_buzz: google_buzz
 	}

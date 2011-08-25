@@ -10,9 +10,15 @@ exports = module.exports = (api_key) ->
 	libxmljs = require('libxmljs')
 	
 	video = (id, days, callback) ->
+		switch days
+			when 1, 7, 30
+				day_set = days
+			else
+				day_set = 7
+		
 		params =
 			profile_id: id
-			days: days
+			days: day_set
 		
 		core.callApi(
 			'video',
@@ -28,9 +34,15 @@ exports = module.exports = (api_key) ->
 		)
 	
 	website = (id, days, callback) ->
+		switch days
+			when 1, 7, 30
+				day_set = days
+			else
+				day_set = 7
+		
 		params =
 			profile_id: id
-			days: days
+			days: day_set
 		
 		core.callApi(
 			'website',
@@ -46,9 +58,15 @@ exports = module.exports = (api_key) ->
 		)
 	
 	facebook = (id, days, callback) ->
+		switch days
+			when 1, 7, 30
+				day_set = days
+			else
+				day_set = 7
+		
 		params =
 			profile_id: id
-			days: days
+			days: day_set
 		
 		core.callApi(
 			'facebook',
@@ -64,9 +82,15 @@ exports = module.exports = (api_key) ->
 		)
 	
 	twitter = (id, days, callback) ->
+		switch days
+			when 1, 7, 30
+				day_set = days
+			else
+				day_set = 7
+		
 		params =
 			profile_id: id,
-			days: days
+			days: day_set
 		
 		core.callApi(
 			'twitter',
@@ -82,9 +106,15 @@ exports = module.exports = (api_key) ->
 		)
 	
 	google_buzz = (id, days, callback) ->
+		switch days
+			when 1, 7, 30
+				day_set = days
+			else
+				day_set = 7
+		
 		params =
 			profile_id: id
-			days: days
+			days: day_set
 		
 		core.callApi(
 			'google_buzz',
@@ -100,6 +130,9 @@ exports = module.exports = (api_key) ->
 		)
 	
 	return {
-		profiles: train,
-		stats: get,
+		website: website
+		video: video
+		facebook: facebook
+		twitter: twitter
+		google_buzz: google_buzz
 	}

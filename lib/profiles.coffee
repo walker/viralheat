@@ -46,7 +46,7 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
-	delete = (id, callback) ->
+	remove = (id, callback) ->
 		params =
 			profile_id: id
 		
@@ -94,3 +94,10 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
+	return {
+		create: create
+		edit: edit
+		remove: remove
+		list_all: list_all
+		details: details
+	}
