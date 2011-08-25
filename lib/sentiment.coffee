@@ -8,7 +8,7 @@ exports = module.exports = (api_key) ->
 	######
 	core = require('./core')(api_key)
 	
-	get = (text) ->
+	get = (text, callback) ->
 		core.callApi(
 			'sentiment',
 			'review',
@@ -21,7 +21,7 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
-	train = (text, mood) ->
+	train = (text, mood, callback) ->
 		core.callApi(
 			'sentiment',
 			'train',
@@ -34,7 +34,7 @@ exports = module.exports = (api_key) ->
 					callback({code:status, msg: err})
 		)
 	
-	quota = () ->
+	quota = (callback) ->
 		core.callApi(
 			'sentiment',
 			'quota',
